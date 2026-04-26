@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eliana Pervieux | Finanzas para mujeres</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violeta:       #6B3FA0;
+      --violeta-dark:  #4A2870;
+      --violeta-light: #9B6FD0;
+      --rosa:          #E8A0C8;
+      --rosa-suave:    #F8E8F4;
+      --dorado:        #C9A84C;
+      --blanco:        #FFFFFF;
+      --gris-texto:    #333333;
+      --gris-suave:    #F7F5FB;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--gris-texto); background: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f0e8f8;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 40px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--violeta); font-weight: 700; text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--gris-texto); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--violeta); }
+    .nav-cta {
+      background: var(--violeta); color: white; padding: 10px 22px;
+      border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--violeta-dark); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--violeta-dark) 0%, var(--violeta) 50%, #8B4FC8 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 40px 60px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    #hero::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 350px; height: 350px; border-radius: 50%;
+      background: rgba(232,160,200,0.15);
+    }
+    .hero-inner {
+      max-width: 1100px; width: 100%;
+      display: flex; align-items: center; gap: 60px;
+      position: relative; z-index: 2;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white; font-size: 0.8rem; font-weight: 600;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; line-height: 1.15; color: white;
+      font-weight: 900; margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--rosa); }
+    .hero-subtitle {
+      font-size: 1.1rem; color: rgba(255,255,255,0.85);
+      line-height: 1.7; margin-bottom: 36px; max-width: 500px;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: white; color: var(--violeta);
+      padding: 14px 30px; border-radius: 50px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+    .btn-secondary {
+      border: 2px solid rgba(255,255,255,0.6); color: white;
+      padding: 14px 30px; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .hero-photo {
+      flex-shrink: 0; position: relative;
+    }
+    .hero-photo img {
+      width: 320px; height: 380px; object-fit: cover;
+      border-radius: 30px 30px 120px 30px;
+      border: 4px solid rgba(255,255,255,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .hero-photo-placeholder {
+      width: 320px; height: 380px;
+      border-radius: 30px 30px 120px 30px;
+      border: 4px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.1);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7); font-size: 0.85rem; text-align: center; gap: 10px;
+    }
+    .hero-photo-placeholder .icon { font-size: 3rem; }
+    .hero-stats {
+      display: flex; gap: 30px; margin-top: 40px;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: white; }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+    /* ── SECCIONES GENÉRICAS ── */
+    section { padding: 90px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; color: var(--violeta);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--violeta-dark);
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: #666; line-height: 1.7; max-width: 620px;
+    }
+
+    /* ── SOBRE MÍ ── */
+    #sobre { background: var(--gris-suave); }
+    .sobre-inner {
+      display: flex; align-items: center; gap: 70px;
+    }
+    .sobre-img {
+      flex-shrink: 0; width: 340px; height: 400px;
+      border-radius: 120px 30px 30px 30px; object-fit: cover;
+      box-shadow: 0 20px 50px rgba(107,63,160,0.2);
+    }
+    .sobre-img-placeholder {
+      flex-shrink: 0; width: 340px; height: 400px;
+      border-radius: 120px 30px 30px 30px;
+      background: linear-gradient(135deg, var(--rosa-suave), #e8d4f4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+    .sobre-text .credenciales {
+      display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0;
+    }
+    .credencial {
+      background: white; border: 1.5px solid var(--rosa);
+      color: var(--violeta); padding: 6px 16px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600;
+    }
+    .sobre-text p { font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 16px; }
+
+    /* ── PRODUCTOS ── */
+    #productos { background: white; }
+    .productos-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px; margin-top: 50px;
+    }
+    .producto-card {
+      border: 2px solid #f0e8f8; border-radius: 24px; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      display: flex; flex-direction: column;
+    }
+    .producto-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(107,63,160,0.12); }
+    .producto-card.featured { border-color: var(--violeta); }
+    .producto-header {
+      padding: 28px 28px 20px;
+      background: linear-gradient(135deg, var(--rosa-suave), white);
+    }
+    .producto-card.featured .producto-header {
+      background: linear-gradient(135deg, var(--violeta), var(--violeta-light));
+    }
+    .producto-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .producto-badge {
+      display: inline-block; background: var(--dorado); color: white;
+      font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 50px; margin-bottom: 8px; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .producto-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--violeta-dark); margin-bottom: 8px;
+    }
+    .producto-card.featured .producto-nombre { color: white; }
+    .producto-descripcion {
+      font-size: 0.9rem; color: #666; line-height: 1.6;
+    }
+    .producto-card.featured .producto-descripcion { color: rgba(255,255,255,0.85); }
+    .producto-body { padding: 22px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+    .producto-includes { list-style: none; margin-bottom: 24px; flex: 1; }
+    .producto-includes li {
+      padding: 8px 0; border-bottom: 1px solid #f5f0fb;
+      font-size: 0.9rem; color: #555; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .producto-includes li:last-child { border-bottom: none; }
+    .check { color: var(--violeta); font-weight: 700; flex-shrink: 0; }
+    .producto-precio {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 18px;
+    }
+    .precio-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700; color: var(--violeta);
+    }
+    .precio-desc { font-size: 0.85rem; color: #999; }
+    .btn-comprar {
+      display: block; text-align: center;
+      background: var(--violeta); color: white;
+      padding: 14px; border-radius: 50px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: background .2s, transform .2s;
+    }
+    .btn-comprar:hover { background: var(--violeta-dark); transform: scale(1.02); }
+    .btn-comprar.outline {
+      background: transparent; border: 2px solid var(--violeta); color: var(--violeta);
+    }
+    .btn-comprar.outline:hover { background: var(--rosa-suave); }
+
+    /* ── CÓMO FUNCIONA ── */
+    #como { background: var(--gris-suave); }
+    .pasos {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px; margin-top: 50px;
+    }
+    .paso {
+      text-align: center; padding: 36px 24px;
+      background: white; border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(107,63,160,0.06);
+    }
+    .paso-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--violeta); color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .paso h3 { font-size: 1rem; font-weight: 700; color: var(--violeta-dark); margin-bottom: 8px; }
+    .paso p { font-size: 0.88rem; color: #777; line-height: 1.6; }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { background: white; }
+    .testimonios-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-top: 50px;
+    }
+    .testimonio {
+      background: var(--rosa-suave); border-radius: 20px; padding: 28px;
+      border-left: 4px solid var(--violeta);
+    }
+    .testimonio-texto {
+      font-size: 0.95rem; line-height: 1.7; color: #555;
+      font-style: italic; margin-bottom: 20px;
+    }
+    .testimonio-autor { display: flex; align-items: center; gap: 12px; }
+    .testimonio-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--violeta); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; flex-shrink: 0;
+    }
+    .testimonio-nombre { font-weight: 700; font-size: 0.9rem; color: var(--violeta-dark); }
+    .testimonio-ubicacion { font-size: 0.8rem; color: #999; }
+    .estrellas { color: var(--dorado); font-size: 0.9rem; margin-bottom: 4px; }
+
+    /* ── FAQ ── */
+    #faq { background: var(--gris-suave); }
+    .faq-list { max-width: 760px; margin: 50px auto 0; }
+    .faq-item {
+      background: white; border-radius: 16px; margin-bottom: 14px;
+      overflow: hidden; box-shadow: 0 2px 10px rgba(107,63,160,0.05);
+    }
+    .faq-pregunta {
+      padding: 20px 24px; font-weight: 600; font-size: 0.97rem;
+      color: var(--violeta-dark); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      border: none; background: none; width: 100%; text-align: left;
+    }
+    .faq-pregunta:hover { color: var(--violeta); }
+    .faq-icon { color: var(--violeta); font-size: 1.2rem; font-weight: 300; }
+    .faq-respuesta {
+      padding: 0 24px 20px; font-size: 0.92rem; color: #666; line-height: 1.7;
+      display: none;
+    }
+    .faq-item.open .faq-respuesta { display: block; }
+    .faq-item.open .faq-icon::after { content: '−'; }
+    .faq-icon::after { content: '+'; }
+
+    /* ── CTA FINAL ── */
+    #cta {
+      background: linear-gradient(135deg, var(--violeta-dark), var(--violeta));
+      text-align: center; padding: 90px 40px;
+    }
+    #cta .section-title { color: white; }
+    #cta .section-subtitle { color: rgba(255,255,255,0.8); margin: 16px auto 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-blanco {
+      background: white; color: var(--violeta);
+      padding: 16px 36px; border-radius: 50px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn-blanco:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .btn-outline-blanco {
+      border: 2px solid rgba(255,255,255,0.7); color: white;
+      padding: 16px 36px; border-radius: 50px;
+      font-weight: 600; font-size: 1rem;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-outline-blanco:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a0d2e; color: rgba(255,255,255,0.7);
+      text-align: center; padding: 40px;
+      font-size: 0.88rem; line-height: 2;
+    }
+    footer a { color: var(--rosa); text-decoration: none; }
+    footer a:hover { color: white; }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: white; margin-bottom: 12px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-inner { flex-direction: column-reverse; gap: 30px; text-align: center; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-photo img, .hero-photo-placeholder { width: 260px; height: 300px; }
+      .hero-stats { justify-content: center; }
+      .sobre-inner { flex-direction: column; }
+      .sobre-img, .sobre-img-placeholder { width: 100%; height: 280px; border-radius: 20px; }
+      section { padding: 60px 20px; }
+      .section-title { font-size: 1.8rem; }
+      .hero-buttons { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Eliana Pervieux</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#productos" class="nav-cta">Quiero empezar</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-badge">✦ Contadora Pública · Educación Financiera</span>
+      <h1 class="hero-title">
+        Empodero mujeres a lograr su <span>independencia financiera</span>
+      </h1>
+      <p class="hero-subtitle">
+        Soy Eliana Pervieux. Te ayudo a salir de deudas, ordenar tus finanzas y construir un futuro económico sólido — sin tecnicismos, sin juicios, con acompañamiento real.
+      </p>
+      <div class="hero-buttons">
+        <a href="#productos" class="btn-primary">Ver mis recursos →</a>
+        <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-secondary">Seguime en Instagram</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">+20</div>
+          <div class="stat-label">Años de trayectoria</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1M+</div>
+          <div class="stat-label">Vistas mensuales en IG</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Países como disertante</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <!-- Reemplazá el src con tu foto -->
+      <div class="hero-photo-placeholder">
+        <span class="icon">👩‍💼</span>
+        <span>Tu foto aquí<br/><small>Reemplazá con tu imagen</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-inner">
+      <div class="sobre-img-placeholder">👩‍💼</div>
+      <div class="sobre-text">
+        <span class="section-tag">Sobre mí</span>
+        <h2 class="section-title">Hola, soy Eliana 👋</h2>
+        <p>Empecé a trabajar desde muy joven. No como plan — como realidad. Durante años hice lo que muchas mujeres hacen sin que nadie lo nombre: trabajar en relación de dependencia y emprender al mismo tiempo. Ferias de diseño, una marca de ropa, un local, alquileres temporales en Argentina y en México. Todo mientras estudiaba. Todo mientras seguía.</p>
+        <p>En 2019 dejé la dependencia para dedicarme a lo propio. Y fue justo entonces, en ese momento de aparente mayor libertad, cuando me di cuenta de algo incómodo: <strong>había tomado malas decisiones con mi dinero durante años.</strong> Con toda la formación técnica que tenía, con más de una década de experiencia contable — igual.</p>
+        <p>Empecé a investigar por qué. Y encontré un patrón que se repite en millones de mujeres: no es ignorancia, no es descuido — es que nadie nos enseñó a relacionarnos con el dinero sin culpa, sin miedo, sin esperar que alguien más lo resuelva. Eso me cambió el foco. Hoy soy Contadora Pública con doble titulación, Presidenta de <strong>F.I.L.S.E.</strong> y disertante en tres países — pero lo más importante es que hablo desde la experiencia real, no desde un manual.</p>
+
+        <div class="credenciales">
+          <span class="credencial">🎓 Doble titulación Argentina &amp; México</span>
+          <span class="credencial">💸 +20 años de experiencia</span>
+          <span class="credencial">💜 Presidenta F.I.L.S.E.</span>
+          <span class="credencial">🌎 Disertante internacional</span>
+          <span class="credencial">📊 Especialista Cripto e Impuestos · UCEMA</span>
+          <span class="credencial">🏛️ Liderazgo con Perspectiva de Género · Di Tella</span>
+          <span class="credencial">🏆 Referente CAME · Voces Vitales</span>
+          <span class="credencial">📱 +1M visualizaciones mensuales en IG</span>
+        </div>
+
+        <!-- Timeline de hitos -->
+        <div style="margin: 28px 0; border-left: 3px solid var(--rosa); padding-left: 20px;">
+          <div style="margin-bottom: 14px;">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2003</span>
+            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Inicio de trayectoria en finanzas y contabilidad</p>
+          </div>
+          <div style="margin-bottom: 14px;">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2020</span>
+            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Fundación del Despacho Contable Pervieux</p>
+          </div>
+          <div style="margin-bottom: 14px;">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2021</span>
+            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Inicio como disertante internacional — Argentina, México y Australia</p>
+          </div>
+          <div style="margin-bottom: 14px;">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2024</span>
+            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Especialización en Cripto e Impuestos (UCEMA) · Doble titulación en México (UNIVITA)</p>
+          </div>
+          <div>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2025</span>
+            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Liderazgo Empresarial con Perspectiva de Género (Di Tella) · Café Financiero en 3 países</p>
+          </div>
+        </div>
+
+        <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-comprar" style="display:inline-block; width:auto; padding: 12px 28px;">Seguime en Instagram →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="section-inner">
+    <span class="section-tag">Mis recursos</span>
+    <h2 class="section-title">¿Cómo puedo ayudarte?</h2>
+    <p class="section-subtitle">Elegí el recurso que mejor se adapta a tu momento financiero actual.</p>
+
+    <div class="productos-grid">
+
+      <!-- GUÍA PDF -->
+      <div class="producto-card">
+        <div class="producto-header">
+          <div class="producto-icon">📖</div>
+          <span class="producto-badge">Recurso digital</span>
+          <div class="producto-nombre">Guía para Salir de Deudas</div>
+          <div class="producto-descripcion">El método paso a paso para ordenar tus finanzas y recuperar tu libertad económica.</div>
+        </div>
+        <div class="producto-body">
+          <ul class="producto-includes">
+            <li><span class="check">✓</span> Inventario completo de deudas</li>
+            <li><span class="check">✓</span> Método Avalancha y Bola de Nieve explicados</li>
+            <li><span class="check">✓</span> Cómo crear un presupuesto real</li>
+            <li><span class="check">✓</span> Cómo negociar con tu banco</li>
+            <li><span class="check">✓</span> Sección especial Argentina (BNA, tarjetas)</li>
+            <li><span class="check">✓</span> Plan de acción de 90 días</li>
+          </ul>
+          <div class="producto-precio">
+            <span class="precio-num">$10 USD</span>
+            <span class="precio-desc">pago único · entrega inmediata</span>
+          </div>
+          <!-- Reemplazá el href con tu link de Mercado Pago -->
+          <a href="#" class="btn-comprar">Comprar la guía →</a>
+        </div>
+      </div>
+
+      <!-- CONSULTORÍA 1:1 (DESTACADA) -->
+      <div class="producto-card featured">
+        <div class="producto-header">
+          <div class="producto-icon">💜</div>
+          <span class="producto-badge">⭐ Más elegido</span>
+          <div class="producto-nombre">Consultoría 1 a 1</div>
+          <div class="producto-descripcion">Trabajamos juntas en tu situación financiera real y armamos tu plan personalizado.</div>
+        </div>
+        <div class="producto-body">
+          <ul class="producto-includes">
+            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Sesión de 60 minutos por Zoom</span></li>
+            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Análisis de tu situación financiera actual</span></li>
+            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Plan de acción personalizado</span></li>
+            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Estrategia de salida de deudas adaptada</span></li>
+            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Recursos y herramientas según tu caso</span></li>
+            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Seguimiento post-sesión por DM</span></li>
+          </ul>
+          <div class="producto-precio">
+            <span class="precio-num" style="color:var(--violeta)">Consultá</span>
+            <span class="precio-desc">lugares limitados por mes</span>
+          </div>
+          <!-- Reemplazá el href con tu link de Calendly -->
+          <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-comprar">Quiero mi consultoría →</a>
+        </div>
+      </div>
+
+      <!-- PRÓXIMAMENTE -->
+      <div class="producto-card" style="opacity:.85;">
+        <div class="producto-header">
+          <div class="producto-icon">🚀</div>
+          <span class="producto-badge" style="background:#999;">Próximamente</span>
+          <div class="producto-nombre">Curso: Finanzas desde Cero</div>
+          <div class="producto-descripcion">Un programa completo para mujeres que quieren ordenar, ahorrar e invertir paso a paso.</div>
+        </div>
+        <div class="producto-body">
+          <ul class="producto-includes">
+            <li><span class="check">✓</span> Módulo 1: Presupuesto y orden</li>
+            <li><span class="check">✓</span> Módulo 2: Salida de deudas</li>
+            <li><span class="check">✓</span> Módulo 3: Ahorro estratégico</li>
+            <li><span class="check">✓</span> Módulo 4: Primeras inversiones</li>
+            <li><span class="check">✓</span> Comunidad de mujeres + soporte</li>
+            <li><span class="check">✓</span> Clases en vivo + grabaciones</li>
+          </ul>
+          <div class="producto-precio">
+            <span class="precio-num" style="color:#999;">Pronto</span>
+            <span class="precio-desc">lista de espera abierta</span>
+          </div>
+          <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-comprar outline">Anotarme en lista de espera</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como">
+  <div class="section-inner" style="text-align:center;">
+    <span class="section-tag">El proceso</span>
+    <h2 class="section-title">¿Cómo empezamos?</h2>
+    <p class="section-subtitle" style="margin: 0 auto;">Simple, claro y sin vueltas.</p>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-num">1</div>
+        <h3>Elegís tu recurso</h3>
+        <p>La guía si querés empezar sola, o la consultoría si querés acompañamiento personalizado.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">2</div>
+        <h3>Realizás el pago</h3>
+        <p>Pago seguro a través de Mercado Pago o el método que prefieras.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">3</div>
+        <h3>Recibís tu recurso</h3>
+        <p>La guía llega a tu email al instante. La consultoría se agenda en el horario que elijas.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">4</div>
+        <h3>Tomás el control</h3>
+        <p>Empezás a aplicar el plan y tu situación financiera empieza a cambiar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-inner" style="text-align:center;">
+    <span class="section-tag">Lo que dicen</span>
+    <h2 class="section-title">Mujeres que tomaron el control</h2>
+    <p class="section-subtitle" style="margin: 0 auto;">Sus palabras valen más que las mías.</p>
+    <div class="testimonios-grid" style="text-align:left;">
+      <div class="testimonio">
+        <div class="estrellas">★★★★★</div>
+        <p class="testimonio-texto">"Después de la consultoría con Eliana entendí por qué nunca me alcanzaba el sueldo. En 2 meses ya pagué una tarjeta completa. ¡Impresionante!"</p>
+        <div class="testimonio-autor">
+          <div class="testimonio-avatar">M</div>
+          <div>
+            <div class="testimonio-nombre">María L.</div>
+            <div class="testimonio-ubicacion">Buenos Aires, Argentina</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <div class="estrellas">★★★★★</div>
+        <p class="testimonio-texto">"La guía es clara, práctica y sin vueltas. La completé en un fin de semana y ya tengo mi inventario de deudas y mi plan armado."</p>
+        <div class="testimonio-autor">
+          <div class="testimonio-avatar">C</div>
+          <div>
+            <div class="testimonio-nombre">Carolina R.</div>
+            <div class="testimonio-ubicacion">Córdoba, Argentina</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio">
+        <div class="estrellas">★★★★★</div>
+        <p class="testimonio-texto">"Nunca pensé que una contadora me iba a hablar tan humanamente. Eliana entiende la realidad de las mujeres y explica todo sin hacerte sentir mal."</p>
+        <div class="testimonio-autor">
+          <div class="testimonio-avatar">V</div>
+          <div>
+            <div class="testimonio-nombre">Valentina M.</div>
+            <div class="testimonio-ubicacion">Mendoza, Argentina</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:30px; color:#999; font-size:0.85rem; font-style:italic;">* Los testimonios son representativos. Reemplazalos con los reales cuando los tengas.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner" style="text-align:center;">
+    <span class="section-tag">Preguntas frecuentes</span>
+    <h2 class="section-title">¿Tenés dudas?</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Para quién es la guía? <span class="faq-icon"></span></button>
+        <div class="faq-respuesta">Para cualquier mujer que tenga deudas y no sepa por dónde empezar. No importa si tenés una tarjeta atrasada o varios préstamos — el método funciona para todos los casos.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Cómo recibo la guía después de comprar? <span class="faq-icon"></span></button>
+        <div class="faq-respuesta">Inmediatamente después del pago, recibirás un email con el link de descarga del PDF. Si no llega en 5 minutos, revisá la carpeta de spam o escribime por Instagram.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿La consultoría es presencial o virtual? <span class="faq-icon"></span></button>
+        <div class="faq-respuesta">Es 100% virtual, por Zoom o Google Meet. Podés hacerla desde cualquier lugar del mundo donde tengas conexión a internet.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Funciona si estoy en otro país, no en Argentina? <span class="faq-icon"></span></button>
+        <div class="faq-respuesta">Sí. La guía tiene una sección general para toda Latinoamérica y una sección específica para Argentina. La consultoría 1:1 se adapta a tu país y situación.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Qué pasa si tengo preguntas después de comprar la guía? <span class="faq-icon"></span></button>
+        <div class="faq-respuesta">Podés escribirme por DM en Instagram (@elianapervieux). Respondo todas las consultas. Si necesitás acompañamiento más profundo, la consultoría 1:1 es ideal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Aceptan Mercado Pago? <span class="faq-icon"></span></button>
+        <div class="faq-respuesta">Sí, aceptamos Mercado Pago para cobros en Argentina y otros países de Latinoamérica. También aceptamos transferencia bancaria. Ante cualquier duda escribime.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="section-inner">
+    <h2 class="section-title">¿Lista para tomar el control?</h2>
+    <p class="section-subtitle">El mejor momento para empezar fue ayer. El segundo mejor momento es ahora.</p>
+    <div class="cta-buttons">
+      <a href="#productos" class="btn-blanco">Ver mis recursos →</a>
+      <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-outline-blanco">Seguime en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Eliana Pervieux</div>
+  <p>Contadora Pública · Experta en Finanzas · Educadora Financiera</p>
+  <p style="margin-top:8px;">
+    <a href="https://www.instagram.com/elianapervieux" target="_blank">@elianapervieux</a>
+    &nbsp;·&nbsp;
+    <a href="https://cafecito.app/elianapervieux" target="_blank">cafecito.app/elianapervieux</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/f.i.l.s.e" target="_blank">@f.i.l.s.e</a>
+  </p>
+  <p style="margin-top:16px; font-size:0.78rem; opacity:.5;">© 2026 Eliana Pervieux. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-pregunta').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
