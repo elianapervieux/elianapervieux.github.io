@@ -1,677 +1,465 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eliana Pervieux | Finanzas para mujeres</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --violeta:       #6B3FA0;
-      --violeta-dark:  #4A2870;
-      --violeta-light: #9B6FD0;
-      --rosa:          #E8A0C8;
-      --rosa-suave:    #F8E8F4;
-      --dorado:        #C9A84C;
-      --blanco:        #FFFFFF;
-      --gris-texto:    #333333;
-      --gris-suave:    #F7F5FB;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--gris-texto); background: #fff; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-      border-bottom: 1px solid #f0e8f8;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 40px;
-    }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--violeta); font-weight: 700; text-decoration: none; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--gris-texto); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
-    .nav-links a:hover { color: var(--violeta); }
-    .nav-cta {
-      background: var(--violeta); color: white; padding: 10px 22px;
-      border-radius: 50px; font-size: 0.85rem; font-weight: 600;
-      text-decoration: none; transition: background .2s;
-    }
-    .nav-cta:hover { background: var(--violeta-dark); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--violeta-dark) 0%, var(--violeta) 50%, #8B4FC8 100%);
-      display: flex; align-items: center; justify-content: center;
-      padding: 100px 40px 60px;
-      position: relative; overflow: hidden;
-    }
-    #hero::before {
-      content: ''; position: absolute; top: -100px; right: -100px;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-    }
-    #hero::after {
-      content: ''; position: absolute; bottom: -80px; left: -80px;
-      width: 350px; height: 350px; border-radius: 50%;
-      background: rgba(232,160,200,0.15);
-    }
-    .hero-inner {
-      max-width: 1100px; width: 100%;
-      display: flex; align-items: center; gap: 60px;
-      position: relative; z-index: 2;
-    }
-    .hero-text { flex: 1; }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white; font-size: 0.8rem; font-weight: 600;
-      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem; line-height: 1.15; color: white;
-      font-weight: 900; margin-bottom: 20px;
-    }
-    .hero-title span { color: var(--rosa); }
-    .hero-subtitle {
-      font-size: 1.1rem; color: rgba(255,255,255,0.85);
-      line-height: 1.7; margin-bottom: 36px; max-width: 500px;
-    }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      background: white; color: var(--violeta);
-      padding: 14px 30px; border-radius: 50px;
-      font-weight: 700; font-size: 0.95rem;
-      text-decoration: none; transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
-    .btn-secondary {
-      border: 2px solid rgba(255,255,255,0.6); color: white;
-      padding: 14px 30px; border-radius: 50px;
-      font-weight: 600; font-size: 0.95rem;
-      text-decoration: none; transition: all .2s;
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-    .hero-photo {
-      flex-shrink: 0; position: relative;
-    }
-    .hero-photo img {
-      width: 320px; height: 380px; object-fit: cover;
-      border-radius: 30px 30px 120px 30px;
-      border: 4px solid rgba(255,255,255,0.3);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-    .hero-photo-placeholder {
-      width: 320px; height: 380px;
-      border-radius: 30px 30px 120px 30px;
-      border: 4px solid rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.1);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.7); font-size: 0.85rem; text-align: center; gap: 10px;
-    }
-    .hero-photo-placeholder .icon { font-size: 3rem; }
-    .hero-stats {
-      display: flex; gap: 30px; margin-top: 40px;
-    }
-    .stat { text-align: center; }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: white; }
-    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
-
-    /* ── SECCIONES GENÉRICAS ── */
-    section { padding: 90px 40px; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block; color: var(--violeta);
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
-      text-transform: uppercase; margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem; font-weight: 700; color: var(--violeta-dark);
-      line-height: 1.2; margin-bottom: 16px;
-    }
-    .section-subtitle {
-      font-size: 1.05rem; color: #666; line-height: 1.7; max-width: 620px;
-    }
-
-    /* ── SOBRE MÍ ── */
-    #sobre { background: var(--gris-suave); }
-    .sobre-inner {
-      display: flex; align-items: center; gap: 70px;
-    }
-    .sobre-img {
-      flex-shrink: 0; width: 340px; height: 400px;
-      border-radius: 120px 30px 30px 30px; object-fit: cover;
-      box-shadow: 0 20px 50px rgba(107,63,160,0.2);
-    }
-    .sobre-img-placeholder {
-      flex-shrink: 0; width: 340px; height: 400px;
-      border-radius: 120px 30px 30px 30px;
-      background: linear-gradient(135deg, var(--rosa-suave), #e8d4f4);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 5rem;
-    }
-    .sobre-text .credenciales {
-      display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0;
-    }
-    .credencial {
-      background: white; border: 1.5px solid var(--rosa);
-      color: var(--violeta); padding: 6px 16px; border-radius: 50px;
-      font-size: 0.82rem; font-weight: 600;
-    }
-    .sobre-text p { font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 16px; }
-
-    /* ── PRODUCTOS ── */
-    #productos { background: white; }
-    .productos-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px; margin-top: 50px;
-    }
-    .producto-card {
-      border: 2px solid #f0e8f8; border-radius: 24px; overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
-      display: flex; flex-direction: column;
-    }
-    .producto-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(107,63,160,0.12); }
-    .producto-card.featured { border-color: var(--violeta); }
-    .producto-header {
-      padding: 28px 28px 20px;
-      background: linear-gradient(135deg, var(--rosa-suave), white);
-    }
-    .producto-card.featured .producto-header {
-      background: linear-gradient(135deg, var(--violeta), var(--violeta-light));
-    }
-    .producto-icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .producto-badge {
-      display: inline-block; background: var(--dorado); color: white;
-      font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
-      border-radius: 50px; margin-bottom: 8px; letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    .producto-nombre {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--violeta-dark); margin-bottom: 8px;
-    }
-    .producto-card.featured .producto-nombre { color: white; }
-    .producto-descripcion {
-      font-size: 0.9rem; color: #666; line-height: 1.6;
-    }
-    .producto-card.featured .producto-descripcion { color: rgba(255,255,255,0.85); }
-    .producto-body { padding: 22px 28px 28px; flex: 1; display: flex; flex-direction: column; }
-    .producto-includes { list-style: none; margin-bottom: 24px; flex: 1; }
-    .producto-includes li {
-      padding: 8px 0; border-bottom: 1px solid #f5f0fb;
-      font-size: 0.9rem; color: #555; display: flex; gap: 10px; align-items: flex-start;
-    }
-    .producto-includes li:last-child { border-bottom: none; }
-    .check { color: var(--violeta); font-weight: 700; flex-shrink: 0; }
-    .producto-precio {
-      display: flex; align-items: baseline; gap: 8px; margin-bottom: 18px;
-    }
-    .precio-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem; font-weight: 700; color: var(--violeta);
-    }
-    .precio-desc { font-size: 0.85rem; color: #999; }
-    .btn-comprar {
-      display: block; text-align: center;
-      background: var(--violeta); color: white;
-      padding: 14px; border-radius: 50px;
-      font-weight: 700; font-size: 0.95rem;
-      text-decoration: none; transition: background .2s, transform .2s;
-    }
-    .btn-comprar:hover { background: var(--violeta-dark); transform: scale(1.02); }
-    .btn-comprar.outline {
-      background: transparent; border: 2px solid var(--violeta); color: var(--violeta);
-    }
-    .btn-comprar.outline:hover { background: var(--rosa-suave); }
-
-    /* ── CÓMO FUNCIONA ── */
-    #como { background: var(--gris-suave); }
-    .pasos {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px; margin-top: 50px;
-    }
-    .paso {
-      text-align: center; padding: 36px 24px;
-      background: white; border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(107,63,160,0.06);
-    }
-    .paso-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--violeta); color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-    }
-    .paso h3 { font-size: 1rem; font-weight: 700; color: var(--violeta-dark); margin-bottom: 8px; }
-    .paso p { font-size: 0.88rem; color: #777; line-height: 1.6; }
-
-    /* ── TESTIMONIOS ── */
-    #testimonios { background: white; }
-    .testimonios-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px; margin-top: 50px;
-    }
-    .testimonio {
-      background: var(--rosa-suave); border-radius: 20px; padding: 28px;
-      border-left: 4px solid var(--violeta);
-    }
-    .testimonio-texto {
-      font-size: 0.95rem; line-height: 1.7; color: #555;
-      font-style: italic; margin-bottom: 20px;
-    }
-    .testimonio-autor { display: flex; align-items: center; gap: 12px; }
-    .testimonio-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--violeta); color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 1rem; flex-shrink: 0;
-    }
-    .testimonio-nombre { font-weight: 700; font-size: 0.9rem; color: var(--violeta-dark); }
-    .testimonio-ubicacion { font-size: 0.8rem; color: #999; }
-    .estrellas { color: var(--dorado); font-size: 0.9rem; margin-bottom: 4px; }
-
-    /* ── FAQ ── */
-    #faq { background: var(--gris-suave); }
-    .faq-list { max-width: 760px; margin: 50px auto 0; }
-    .faq-item {
-      background: white; border-radius: 16px; margin-bottom: 14px;
-      overflow: hidden; box-shadow: 0 2px 10px rgba(107,63,160,0.05);
-    }
-    .faq-pregunta {
-      padding: 20px 24px; font-weight: 600; font-size: 0.97rem;
-      color: var(--violeta-dark); cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center;
-      border: none; background: none; width: 100%; text-align: left;
-    }
-    .faq-pregunta:hover { color: var(--violeta); }
-    .faq-icon { color: var(--violeta); font-size: 1.2rem; font-weight: 300; }
-    .faq-respuesta {
-      padding: 0 24px 20px; font-size: 0.92rem; color: #666; line-height: 1.7;
-      display: none;
-    }
-    .faq-item.open .faq-respuesta { display: block; }
-    .faq-item.open .faq-icon::after { content: '−'; }
-    .faq-icon::after { content: '+'; }
-
-    /* ── CTA FINAL ── */
-    #cta {
-      background: linear-gradient(135deg, var(--violeta-dark), var(--violeta));
-      text-align: center; padding: 90px 40px;
-    }
-    #cta .section-title { color: white; }
-    #cta .section-subtitle { color: rgba(255,255,255,0.8); margin: 16px auto 40px; }
-    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-blanco {
-      background: white; color: var(--violeta);
-      padding: 16px 36px; border-radius: 50px;
-      font-weight: 700; font-size: 1rem;
-      text-decoration: none; transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-    .btn-blanco:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-    .btn-outline-blanco {
-      border: 2px solid rgba(255,255,255,0.7); color: white;
-      padding: 16px 36px; border-radius: 50px;
-      font-weight: 600; font-size: 1rem;
-      text-decoration: none; transition: all .2s;
-    }
-    .btn-outline-blanco:hover { background: rgba(255,255,255,0.1); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #1a0d2e; color: rgba(255,255,255,0.7);
-      text-align: center; padding: 40px;
-      font-size: 0.88rem; line-height: 2;
-    }
-    footer a { color: var(--rosa); text-decoration: none; }
-    footer a:hover { color: white; }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; color: white; margin-bottom: 12px;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .hero-inner { flex-direction: column-reverse; gap: 30px; text-align: center; }
-      .hero-title { font-size: 2.2rem; }
-      .hero-photo img, .hero-photo-placeholder { width: 260px; height: 300px; }
-      .hero-stats { justify-content: center; }
-      .sobre-inner { flex-direction: column; }
-      .sobre-img, .sobre-img-placeholder { width: 100%; height: 280px; border-radius: 20px; }
-      section { padding: 60px 20px; }
-      .section-title { font-size: 1.8rem; }
-      .hero-buttons { justify-content: center; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eliana Pervieux — Finanzas para mujeres</title>
+<meta name="description" content="Descargá gratis la guía de Deuda Bancaria en Argentina. Por Eliana Pervieux, Contadora Pública."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1C1210;--cream:#FAF6F0;--warm:#F2EDE5;
+  --terra:#C8522A;--terra-light:#E8784F;
+  --gold:#B8935A;--gold-light:#D4AF7A;
+  --sage:#6B7D6A;--blush:#E8C4B0;--blush-light:#F5E0D4;
+  --text:#2C2118;--text-muted:#7A6B5E;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:10px;height:10px;background:var(--terra);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--terra);border-radius:50%;pointer-events:none;z-index:9998;transition:opacity .3s;mix-blend-mode:multiply}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:24px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,246,240,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,147,90,0.15)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ink);text-decoration:none}
+.nav-logo em{color:var(--terra);font-style:italic}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--terra)}
+.nav-cta{background:var(--terra);color:white;padding:11px 28px;border-radius:2px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--ink)}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:80px;position:relative;overflow:hidden}
+.hero-left{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terra);margin-bottom:32px}
+.hero-tag::before{content:'';width:40px;height:1px;background:var(--terra)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,5rem);line-height:1.05;font-weight:300;color:var(--ink);margin-bottom:28px}
+.hero-title em{font-style:italic;color:var(--terra);font-weight:400}
+.hero-title strong{font-weight:700}
+.hero-desc{font-size:1rem;line-height:1.8;color:var(--text-muted);max-width:440px;margin-bottom:48px;font-weight:300}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn-main{background:var(--terra);color:white;padding:16px 36px;border-radius:2px;font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;position:relative;overflow:hidden}
+.btn-main:hover{background:var(--ink);transform:translateY(-2px)}
+.btn-ghost{color:var(--ink);font-size:0.82rem;font-weight:500;text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:color .2s,border-color .2s}
+.btn-ghost:hover{color:var(--terra);border-color:var(--terra)}
+.hero-stats{display:flex;gap:40px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(184,147,90,0.2)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--ink)}
+.stat-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
+.hero-right{position:relative;overflow:hidden;background:var(--warm)}
+.hero-img-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--cream) 0%,transparent 30%),linear-gradient(to top,var(--cream) 0%,transparent 20%)}
+.hero-badge-float{position:absolute;top:50px;right:40px;background:var(--terra);color:white;padding:20px;width:130px;height:130px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:0.7rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;line-height:1.4;animation:float 4s ease-in-out infinite;box-shadow:0 20px 50px rgba(200,82,42,0.3)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-deco-line{position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:60%;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
+.marquee-wrap{background:var(--ink);color:var(--gold-light);padding:18px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:marquee 22s linear infinite}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;font-weight:300;padding:0 40px;display:flex;align-items:center;gap:40px}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--terra);display:inline-block}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+#problema{padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:100px;max-width:1200px;margin:0 auto}
+.problema-tag{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.problema-tag::after{content:'';width:60px;height:1px;background:var(--terra);opacity:0.4}
+.problema-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:24px}
+.problema-title em{font-style:italic;color:var(--terra)}
+.problema-desc{font-size:0.97rem;line-height:1.9;color:var(--text-muted);font-weight:300}
+.check-list{list-style:none;display:flex;flex-direction:column}
+.check-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(184,147,90,0.15);align-items:flex-start}
+.check-item:first-child{border-top:1px solid rgba(184,147,90,0.15)}
+.check-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--blush);line-height:1;flex-shrink:0;width:40px;text-align:right}
+.check-text{font-size:0.95rem;line-height:1.7;color:var(--text-muted);padding-top:4px}
+.check-text strong{color:var(--ink);font-weight:600}
+#guia{padding:0 60px 120px;max-width:1200px;margin:0 auto}
+.guia-card{background:var(--ink);border-radius:4px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative}
+.guia-card::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(200,82,42,0.07)}
+.guia-left{padding:70px 60px;position:relative;z-index:2}
+.guia-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra);margin-bottom:20px}
+.guia-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:white;line-height:1.1;margin-bottom:16px}
+.guia-title em{font-style:italic;color:var(--gold-light)}
+.guia-subtitle{font-size:0.9rem;line-height:1.8;color:rgba(255,255,255,0.5);margin-bottom:40px;font-weight:300}
+.guia-features{list-style:none;margin-bottom:48px;display:flex;flex-direction:column;gap:14px}
+.guia-feature{display:flex;align-items:flex-start;gap:14px;font-size:0.88rem;color:rgba(255,255,255,0.75);line-height:1.5}
+.guia-feature::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra);flex-shrink:0;margin-top:6px}
+.guia-price-wrap{display:flex;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.guia-price-gratis{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:var(--terra)}
+.guia-price-sub{font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.5}
+.btn-guia{display:inline-flex;align-items:center;gap:12px;background:var(--terra);color:white;padding:16px 36px;border-radius:2px;font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .25s}
+.btn-guia:hover{background:var(--terra-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(200,82,42,0.4)}
+.btn-guia-arrow{font-size:1.1rem;transition:transform .2s}
+.btn-guia:hover .btn-guia-arrow{transform:translateX(4px)}
+.guia-right{background:var(--warm);padding:70px 50px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}
+.guia-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:40px}
+.guia-deco-circle{position:absolute;width:250px;height:250px;border-radius:50%;border:1px solid rgba(184,147,90,0.25);top:0;right:0}
+.guia-deco-circle2{position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(200,82,42,0.07);bottom:10px;left:10px}
+.guia-book{width:190px;height:270px;background:linear-gradient(135deg,#E8784F,#C8522A);border-radius:4px 12px 12px 4px;box-shadow:-8px 8px 0 rgba(0,0,0,0.1),-16px 16px 0 rgba(0,0,0,0.05);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 22px;text-align:center;position:relative;z-index:2}
+.guia-book::before{content:'';position:absolute;left:0;top:0;bottom:0;width:12px;background:rgba(0,0,0,0.15);border-radius:4px 0 0 4px}
+.guia-book-label{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:12px}
+.guia-book-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:white;line-height:1.2;margin-bottom:8px}
+.guia-book-sub{font-size:0.58rem;color:rgba(255,255,255,0.6);line-height:1.5}
+.guia-book-author{margin-top:20px;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
+.guia-nota{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-top:24px}
+.guia-nota::before{content:'✓';color:var(--sage);font-weight:700}
+#consultoria{padding:120px 60px;background:var(--warm)}
+.consultoria-inner{max-width:1200px;margin:0 auto}
+.consultoria-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:70px;align-items:end}
+.consultoria-tag{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.consultoria-tag::after{content:'';width:40px;height:1px;background:var(--terra)}
+.consultoria-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1}
+.consultoria-title em{font-style:italic;color:var(--terra)}
+.consultoria-desc{font-size:0.97rem;line-height:1.9;color:var(--text-muted);font-weight:300;align-self:end}
+.consultoria-card{background:white;border-radius:4px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:0 30px 80px rgba(28,18,16,0.08)}
+.consult-left{padding:60px;border-right:1px solid var(--warm)}
+.consult-label{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px}
+.consult-includes{list-style:none;display:flex;flex-direction:column}
+.consult-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--warm);align-items:flex-start}
+.consult-item:last-child{border-bottom:none}
+.consult-icon{width:32px;height:32px;border-radius:50%;background:var(--blush-light);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+.consult-text{font-size:0.9rem;line-height:1.5;color:var(--text-muted)}
+.consult-text strong{color:var(--ink);display:block;font-size:0.85rem;margin-bottom:2px}
+.consult-right{padding:60px;background:var(--ink);display:flex;flex-direction:column;justify-content:space-between}
+.consult-price-label{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:12px}
+.consult-price{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:white;margin-bottom:8px;line-height:1}
+.consult-price-sub{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:40px}
+.consult-badge{background:var(--terra);color:white;display:inline-block;padding:6px 16px;border-radius:2px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:40px;width:fit-content}
+.btn-consult{display:flex;align-items:center;justify-content:center;gap:12px;background:white;color:var(--ink);padding:16px 32px;border-radius:2px;font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all .25s;margin-bottom:16px}
+.btn-consult:hover{background:var(--terra);color:white;transform:translateY(-2px)}
+.consult-fine{font-size:0.73rem;color:rgba(255,255,255,0.25);text-align:center;line-height:1.5}
+#sobre{padding:120px 60px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:100px;align-items:start}
+.sobre-img-col{position:relative;width:360px}
+.sobre-img-wrap{width:360px;height:460px;position:relative;border-radius:4px;overflow:hidden}
+.sobre-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.sobre-img-deco{position:absolute;bottom:-20px;right:-20px;width:120px;height:120px;border-radius:50%;border:1px solid var(--gold);opacity:0.4}
+.sobre-img-tag{position:absolute;top:30px;left:-20px;background:var(--terra);color:white;padding:12px 20px;border-radius:2px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;box-shadow:0 8px 30px rgba(200,82,42,0.3);writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg)}
+.sobre-content{padding-top:10px}
+.sobre-tag{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.sobre-tag::after{content:'';width:40px;height:1px;background:var(--terra)}
+.sobre-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;margin-bottom:28px}
+.sobre-title em{font-style:italic;color:var(--terra)}
+.sobre-text{font-size:0.97rem;line-height:1.9;color:var(--text-muted);font-weight:300;margin-bottom:20px}
+.sobre-text strong{color:var(--ink);font-weight:600}
+.credenciales-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:32px 0}
+.cred-item{background:var(--warm);border-radius:2px;padding:12px 16px;font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:8px;border-left:2px solid var(--terra)}
+.btn-ig{display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--ink);color:var(--ink);padding:14px 28px;border-radius:2px;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all .25s;margin-top:12px}
+.btn-ig:hover{background:var(--ink);color:white}
+#testimonios{padding:120px 60px;background:var(--ink)}
+.test-inner{max-width:1200px;margin:0 auto}
+.test-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
+.test-tag{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.test-tag::after{content:'';width:40px;height:1px;background:var(--terra)}
+.test-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:white;line-height:1.1}
+.test-title em{font-style:italic;color:var(--gold-light)}
+.test-nota{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+.test-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.test-card{background:rgba(255,255,255,0.04);border:1px solid rgba(184,147,90,0.15);border-radius:4px;padding:36px;transition:background .3s,border-color .3s}
+.test-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(200,82,42,0.3)}
+.test-stars{color:var(--gold);font-size:0.85rem;margin-bottom:20px;letter-spacing:2px}
+.test-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;font-style:italic;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:28px}
+.test-author{display:flex;align-items:center;gap:14px}
+.test-avatar{width:42px;height:42px;border-radius:50%;background:var(--terra);color:white;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
+.test-name{font-size:0.85rem;font-weight:600;color:white}
+.test-loc{font-size:0.73rem;color:rgba(255,255,255,0.35)}
+#faq{padding:120px 60px;max-width:900px;margin:0 auto}
+.faq-tag{font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.faq-tag::after{content:'';width:40px;height:1px;background:var(--terra)}
+.faq-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--ink);line-height:1.1;margin-bottom:60px}
+.faq-title em{font-style:italic;color:var(--terra)}
+.faq-item{border-bottom:1px solid rgba(184,147,90,0.2)}
+.faq-item:first-of-type{border-top:1px solid rgba(184,147,90,0.2)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;align-items:center;font-size:0.97rem;font-weight:500;color:var(--ink);text-align:left;transition:color .2s;font-family:'DM Sans',sans-serif}
+.faq-q:hover{color:var(--terra)}
+.faq-icon{width:28px;height:28px;border:1.5px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:transform .3s;line-height:1}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--terra)}
+.faq-icon::after{content:'+'}
+.faq-a{display:none;padding:0 0 24px;font-size:0.93rem;line-height:1.8;color:var(--text-muted);font-weight:300}
+.faq-item.open .faq-a{display:block}
+#cta{padding:120px 60px;background:var(--terra);position:relative;overflow:hidden;text-align:center}
+#cta::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.cta-inner{max-width:900px;margin:0 auto;position:relative;z-index:2}
+.cta-pre{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:24px}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:white;line-height:1.05;margin-bottom:24px}
+.cta-title em{font-style:italic}
+.cta-desc{font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.7);font-weight:300;margin-bottom:52px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-cta-white{background:white;color:var(--terra);padding:18px 44px;border-radius:2px;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;box-shadow:0 8px 30px rgba(0,0,0,0.15)}
+.btn-cta-white:hover{background:var(--ink);color:white;transform:translateY(-3px)}
+.btn-cta-outline{border:2px solid rgba(255,255,255,0.5);color:white;padding:18px 44px;border-radius:2px;font-size:0.85rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all .25s}
+.btn-cta-outline:hover{background:rgba(255,255,255,0.1);border-color:white}
+footer{background:var(--ink);color:rgba(255,255,255,0.4);padding:50px 60px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:white;font-weight:400}
+.footer-logo em{font-style:italic;color:var(--terra)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{color:rgba(255,255,255,0.35);text-decoration:none;font-size:0.78rem;transition:color .2s}
+.footer-links a:hover{color:var(--terra)}
+.footer-copy{font-size:0.75rem;opacity:0.35}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+  nav{padding:18px 24px}.nav-links{display:none}
+  #hero{grid-template-columns:1fr}.hero-left{padding:100px 24px 60px}.hero-right{height:360px}
+  #problema{grid-template-columns:1fr;padding:80px 24px;gap:40px}
+  #guia{padding:0 24px 80px}.guia-card{grid-template-columns:1fr}.guia-right{display:none}
+  #consultoria{padding:80px 24px}.consultoria-header{grid-template-columns:1fr;gap:20px}.consultoria-card{grid-template-columns:1fr}
+  #sobre{grid-template-columns:1fr;padding:80px 24px;gap:40px}.sobre-img-col{width:100%}.sobre-img-wrap{width:100%;height:300px}
+  #testimonios{padding:80px 24px}.test-header{flex-direction:column;gap:12px;align-items:flex-start}.test-grid{grid-template-columns:1fr}
+  #faq{padding:80px 24px}#cta{padding:80px 24px}
+  footer{flex-direction:column;gap:20px;text-align:center;padding:40px 24px}.footer-links{flex-wrap:wrap;justify-content:center}
+}
+</style>
 </head>
 <body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Eliana Pervieux</a>
+  <a href="#" class="nav-logo">Eliana <em>Pervieux</em></a>
   <ul class="nav-links">
+    <li><a href="#guia">Guía gratis</a></li>
+    <li><a href="#consultoria">Consultoría</a></li>
     <li><a href="#sobre">Sobre mí</a></li>
-    <li><a href="#productos">Productos</a></li>
-    <li><a href="#testimonios">Testimonios</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#productos" class="nav-cta">Quiero empezar</a>
+  <a href="https://eliana-pervieux.tiendup.com/p/deudas-bancarias-la-guia" target="_blank" class="nav-cta">Descargar gratis</a>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <span class="hero-badge">✦ Contadora Pública · Educación Financiera</span>
-      <h1 class="hero-title">
-        Te doy la información financiera <span>que el sistema no te explica</span>
-      </h1>
-      <p class="hero-subtitle">
-        Soy Eliana Pervieux. Te ayudo a salir de deudas, ordenar tus finanzas y construir un futuro económico sólido — sin tecnicismos, sin juicios, con acompañamiento real.
-      </p>
-      <div class="hero-buttons">
-        <a href="#productos" class="btn-primary">Ver mis recursos →</a>
-        <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-secondary">Seguime en Instagram</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">+20</div>
-          <div class="stat-label">Años de trayectoria</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">1M+</div>
-          <div class="stat-label">Vistas mensuales en IG</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Países como disertante</div>
-        </div>
-      </div>
+  <div class="hero-left">
+    <div class="hero-tag">Contadora Pública · Educación Financiera</div>
+    <h1 class="hero-title">La información<br>financiera que<br><em>el sistema</em><br><strong>no te explica</strong></h1>
+    <p class="hero-desc">Soy Eliana Pervieux. Te ayudo a salir de deudas, ordenar tus finanzas y construir un futuro económico sólido — sin tecnicismos, sin juicios, con información real.</p>
+    <div class="hero-actions">
+      <a href="https://eliana-pervieux.tiendup.com/p/deudas-bancarias-la-guia" target="_blank" class="btn-main">Descargar guía gratis</a>
+      <a href="#consultoria" class="btn-ghost">Ver consultoría →</a>
     </div>
-    <div class="hero-photo">
-      <img src="eli.jpg" alt="Eliana Pervieux" style="width:320px;height:380px;object-fit:cover;border-radius:30px 30px 120px 30px;border:4px solid rgba(255,255,255,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.3);" />
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">+20</div><div class="stat-label">Años de trayectoria</div></div>
+      <div class="stat-item"><div class="stat-num">1M+</div><div class="stat-label">Vistas mensuales IG</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Países disertante</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-deco-line"></div>
+    <div class="hero-img-wrap">
+      <img src="https://elianapervieux.github.io/eli.jpg" alt="Eliana Pervieux"/>
+    </div>
+    <div class="hero-img-overlay"></div>
+    <div class="hero-badge-float">Guía<br>100%<br>Gratuita</div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Deuda Bancaria en Argentina <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Conocé tus derechos <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Negociá desde un lugar informado <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Finanzas para mujeres <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Guía gratuita disponible ahora <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Ley 24.240 · Ley 25.065 · BCRA <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Deuda Bancaria en Argentina <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Conocé tus derechos <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Negociá desde un lugar informado <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Finanzas para mujeres <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Guía gratuita disponible ahora <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Ley 24.240 · Ley 25.065 · BCRA <span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<section id="problema">
+  <div class="problema-left fade-up">
+    <div class="problema-tag">El punto de partida</div>
+    <h2 class="problema-title">¿El banco te dijo que<br><em>no hay otra opción?</em></h2>
+    <p class="problema-desc">La sensación de que el banco tiene todo el poder y vos ninguno no es irracional. Pero hay un marco legal que te protege y que la mayoría de las personas en deuda bancaria no conoce. Esta guía existe para cambiar eso.</p>
+  </div>
+  <div class="problema-right fade-up">
+    <ul class="check-list">
+      <li class="check-item"><span class="check-num">01</span><span class="check-text"><strong>Dejaste de pagar una tarjeta</strong> y el número que te muestran ya no tiene nada que ver con lo que gastaste.</span></li>
+      <li class="check-item"><span class="check-num">02</span><span class="check-text"><strong>Fuiste al banco a pedir ayuda</strong> y te ofrecieron condiciones imposibles de cumplir.</span></li>
+      <li class="check-item"><span class="check-num">03</span><span class="check-text"><strong>Te llaman de un estudio jurídico</strong> y no sabés si es grave o no.</span></li>
+      <li class="check-item"><span class="check-num">04</span><span class="check-text"><strong>Firmaste un plan de pagos</strong> que no podés sostener y no sabés qué hacer ahora.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="guia">
+  <div class="guia-card fade-up">
+    <div class="guia-left">
+      <div class="guia-eyebrow">✦ Recurso gratuito</div>
+      <h2 class="guia-title">Deuda Bancaria<br>en <em>Argentina</em></h2>
+      <p class="guia-subtitle">Qué hacer cuando el banco te ofrece condiciones que no podés pagar. Casos reales, marco legal argentino, herramientas concretas.</p>
+      <ul class="guia-features">
+        <li class="guia-feature">8 capítulos con casos reales argentinos</li>
+        <li class="guia-feature">Tus derechos como deudor — Ley 24.240 · Ley 25.065</li>
+        <li class="guia-feature">Cómo leer y negociar una propuesta del banco</li>
+        <li class="guia-feature">Qué puede y NO puede hacer un estudio jurídico</li>
+        <li class="guia-feature">Refinanciación vs. reestructuración vs. consolidación</li>
+        <li class="guia-feature">Checklist · Glosario · Plan de salida 90 días</li>
+      </ul>
+      <div class="guia-price-wrap">
+        <span class="guia-price-gratis">GRATIS</span>
+        <div class="guia-price-sub">PDF · entrega<br>inmediata por email</div>
+      </div>
+      <a href="https://eliana-pervieux.tiendup.com/p/deudas-bancarias-la-guia" target="_blank" class="btn-guia">Descargar gratis <span class="btn-guia-arrow">→</span></a>
+    </div>
+    <div class="guia-right">
+      <div class="guia-visual">
+        <div class="guia-deco-circle"></div>
+        <div class="guia-deco-circle2"></div>
+        <div class="guia-book">
+          <div class="guia-book-label">Guía gratuita</div>
+          <div class="guia-book-title">Deuda Bancaria en Argentina</div>
+          <div class="guia-book-sub">Qué hacer cuando el banco te ofrece condiciones que no podés pagar</div>
+          <div class="guia-book-author">Eliana Pervieux</div>
+        </div>
+      </div>
+      <div class="guia-nota">Sin spam · Solo información que te sirve</div>
     </div>
   </div>
 </section>
 
-<!-- SOBRE MÍ -->
+<section id="consultoria">
+  <div class="consultoria-inner">
+    <div class="consultoria-header">
+      <div class="fade-up">
+        <div class="consultoria-tag">Acompañamiento personalizado</div>
+        <h2 class="consultoria-title">Consultoría<br><em>1 a 1</em></h2>
+      </div>
+      <p class="consultoria-desc fade-up">Cuando la guía no alcanza y necesitás que alguien mire tu situación específica en detalle. Trabajamos juntas en tu realidad financiera y armamos tu plan personalizado.</p>
+    </div>
+    <div class="consultoria-card fade-up">
+      <div class="consult-left">
+        <div class="consult-label">Lo que incluye</div>
+        <ul class="consult-includes">
+          <li class="consult-item"><div class="consult-icon">⏱</div><div class="consult-text"><strong>Sesión de 60 minutos</strong>100% virtual por Zoom o Google Meet</div></li>
+          <li class="consult-item"><div class="consult-icon">🔍</div><div class="consult-text"><strong>Análisis de tu situación</strong>Revisamos tu deuda, tus derechos y tus opciones reales</div></li>
+          <li class="consult-item"><div class="consult-icon">📋</div><div class="consult-text"><strong>Plan de acción personalizado</strong>Estrategia concreta adaptada a tu caso específico</div></li>
+          <li class="consult-item"><div class="consult-icon">🛠</div><div class="consult-text"><strong>Recursos y herramientas</strong>Según tu situación y el tipo de deuda que tenés</div></li>
+          <li class="consult-item"><div class="consult-icon">💬</div><div class="consult-text"><strong>Seguimiento post-sesión</strong>Podés escribirme por DM con dudas que surjan después</div></li>
+        </ul>
+      </div>
+      <div class="consult-right">
+        <div>
+          <div class="consult-badge">⭐ Más elegido</div>
+          <div class="consult-price-label">Inversión</div>
+          <div class="consult-price">Consultá</div>
+          <p class="consult-price-sub">Lugares limitados por mes.<br>Agendá ahora para asegurar tu lugar.</p>
+        </div>
+        <div>
+          <a href="https://calendly.com/elianaepervieux/consultoria-1-1-eliana-pervieux" target="_blank" class="btn-consult">Agendar consultoría →</a>
+          <p class="consult-fine">Sin compromiso · Solo una conversación real sobre tu situación</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="sobre">
-  <div class="section-inner">
-    <div class="sobre-inner">
-      <img src="eli.jpg" alt="Eliana Pervieux" class="sobre-img" />
-      <div class="sobre-text">
-        <span class="section-tag">Sobre mí</span>
-        <h2 class="section-title">Hola, soy Eliana 👋</h2>
-        <p>Empecé a trabajar desde muy joven. No como plan — como realidad. Durante años hice lo que muchas mujeres hacen sin que nadie lo nombre: trabajar en relación de dependencia y emprender al mismo tiempo. Ferias de diseño, una marca de ropa, un local, alquileres temporales en Argentina y en México. Todo mientras estudiaba. Todo mientras seguía.</p>
-        <p>En 2019 dejé la dependencia para dedicarme a lo propio. Y fue justo entonces, en ese momento de aparente mayor libertad, cuando me di cuenta de algo incómodo: <strong>había tomado malas decisiones con mi dinero durante años.</strong> Con toda la formación técnica que tenía, con más de una década de experiencia contable — igual.</p>
-        <p>Empecé a investigar por qué. Y encontré un patrón que se repite en millones de mujeres: no es ignorancia, no es descuido — es que nadie nos enseñó a relacionarnos con el dinero sin culpa, sin miedo, sin esperar que alguien más lo resuelva. Eso me cambió el foco. Hoy soy Contadora Pública con doble titulación, Presidenta de <strong>F.I.L.S.E.</strong> y disertante en tres países — pero lo más importante es que hablo desde la experiencia real, no desde un manual.</p>
-
-        <div class="credenciales">
-          <span class="credencial">🎓 Doble titulación Argentina &amp; México</span>
-          <span class="credencial">💸 +20 años de experiencia</span>
-          <span class="credencial">💜 Presidenta F.I.L.S.E.</span>
-          <span class="credencial">🌎 Disertante internacional</span>
-          <span class="credencial">📊 Especialista Cripto e Impuestos · UCEMA</span>
-          <span class="credencial">🏛️ Liderazgo con Perspectiva de Género · Di Tella</span>
-          <span class="credencial">🏆 Referente CAME · Voces Vitales</span>
-          <span class="credencial">📱 +1M visualizaciones mensuales en IG</span>
-        </div>
-
-        <!-- Timeline de hitos -->
-        <div style="margin: 28px 0; border-left: 3px solid var(--rosa); padding-left: 20px;">
-          <div style="margin-bottom: 14px;">
-            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2003</span>
-            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Inicio de trayectoria en finanzas y contabilidad</p>
-          </div>
-          <div style="margin-bottom: 14px;">
-            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2020</span>
-            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Fundación del Despacho Contable Pervieux</p>
-          </div>
-          <div style="margin-bottom: 14px;">
-            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2021</span>
-            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Inicio como disertante internacional — Argentina, México y Australia</p>
-          </div>
-          <div style="margin-bottom: 14px;">
-            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2024</span>
-            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Especialización en Cripto e Impuestos (UCEMA) · Doble titulación en México (UNIVITA)</p>
-          </div>
-          <div>
-            <span style="font-size:0.75rem; font-weight:700; color:var(--violeta); text-transform:uppercase; letter-spacing:0.5px;">2025</span>
-            <p style="font-size:0.9rem; color:#555; margin:2px 0;">Liderazgo Empresarial con Perspectiva de Género (Di Tella) · Café Financiero en 3 países</p>
-          </div>
-        </div>
-
-        <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-comprar" style="display:inline-block; width:auto; padding: 12px 28px;">Seguime en Instagram →</a>
-      </div>
+  <div class="sobre-img-col fade-up">
+    <div class="sobre-img-wrap">
+      <img src="https://elianapervieux.github.io/eli.jpg" alt="Eliana Pervieux"/>
     </div>
+    <div class="sobre-img-deco"></div>
+    <div class="sobre-img-tag">Contadora Pública</div>
+  </div>
+  <div class="sobre-content fade-up">
+    <div class="sobre-tag">Sobre mí</div>
+    <h2 class="sobre-title">Hablo desde la<br>experiencia real,<br><em>no desde un manual</em></h2>
+    <p class="sobre-text">Empecé a trabajar desde muy joven. Durante años hice lo que muchas mujeres hacen sin que nadie lo nombre: trabajar en relación de dependencia y emprender al mismo tiempo. En 2019 dejé la dependencia para dedicarme a lo propio — y fue justo entonces cuando me di cuenta de algo incómodo: <strong>había tomado malas decisiones con mi dinero durante años.</strong></p>
+    <p class="sobre-text">Empecé a investigar por qué. Y encontré un patrón que se repite en millones de mujeres: no es ignorancia, no es descuido — es que nadie nos enseñó a relacionarnos con el dinero sin culpa ni miedo. Eso me cambió el foco.</p>
+    <div class="credenciales-grid">
+      <div class="cred-item">🎓 Doble titulación Argentina &amp; México</div>
+      <div class="cred-item">💸 +20 años de experiencia</div>
+      <div class="cred-item">💜 Presidenta F.I.L.S.E.</div>
+      <div class="cred-item">🌎 Disertante internacional</div>
+      <div class="cred-item">📊 Especialista Cripto · UCEMA</div>
+      <div class="cred-item">🏆 Referente CAME · Voces Vitales</div>
+    </div>
+    <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-ig">Seguime en Instagram →</a>
   </div>
 </section>
 
-<!-- PRODUCTOS -->
-<section id="productos">
-  <div class="section-inner">
-    <span class="section-tag">Mis recursos</span>
-    <h2 class="section-title">¿Cómo puedo ayudarte?</h2>
-    <p class="section-subtitle">Elegí el recurso que mejor se adapta a tu momento financiero actual.</p>
-
-    <div class="productos-grid">
-
-      <!-- GUÍA PDF -->
-      <div class="producto-card">
-        <div class="producto-header">
-          <div class="producto-icon">📖</div>
-          <span class="producto-badge">Recurso digital</span>
-          <div class="producto-nombre">Guía: Deuda Bancaria en Argentina</div>
-          <div class="producto-descripcion">Qué hacer cuando el banco te ofrece condiciones que no podés pagar. Casos reales, marco legal argentino.</div>
-        </div>
-        <div class="producto-body">
-          <ul class="producto-includes">
-            <li><span class="check">✓</span> 8 capítulos con casos reales argentinos</li>
-            <li><span class="check">✓</span> Tus derechos como deudor (Ley 24.240 · Ley 25.065)</li>
-            <li><span class="check">✓</span> Cómo leer y negociar una propuesta del banco</li>
-            <li><span class="check">✓</span> Qué puede y NO puede hacer un estudio jurídico</li>
-            <li><span class="check">✓</span> Checklist · Glosario · Plan de salida 90 días</li>
-          </ul>
-          <div class="producto-precio">
-            <span style="font-size:.85rem;color:#999;text-decoration:line-through;">$20.000 ARS</span><br>
-            <span class="precio-num">$10.000 ARS</span>
-            <span class="precio-desc">precio de lanzamiento · PDF · entrega inmediata</span>
-          </div>
-          <a href="https://elianaepervieux.systeme.io/189fdf29" target="_blank" class="btn-comprar">Quiero la guía →</a>
-        </div>
-      </div>
-
-      <!-- CONSULTORÍA 1:1 (DESTACADA) -->
-      <div class="producto-card featured">
-        <div class="producto-header">
-          <div class="producto-icon">💜</div>
-          <span class="producto-badge">⭐ Más elegido</span>
-          <div class="producto-nombre">Consultoría 1 a 1</div>
-          <div class="producto-descripcion">Trabajamos juntas en tu situación financiera real y armamos tu plan personalizado.</div>
-        </div>
-        <div class="producto-body">
-          <ul class="producto-includes">
-            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Sesión de 60 minutos por Zoom</span></li>
-            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Análisis de tu situación financiera actual</span></li>
-            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Plan de acción personalizado</span></li>
-            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Estrategia de salida de deudas adaptada</span></li>
-            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Recursos y herramientas según tu caso</span></li>
-            <li><span class="check" style="color:#E8A0C8">✓</span> <span style="color:#555">Seguimiento post-sesión por DM</span></li>
-          </ul>
-          <div class="producto-precio">
-            <span class="precio-num" style="color:var(--violeta)">Consultá</span>
-            <span class="precio-desc">lugares limitados por mes</span>
-          </div>
-          <a href="https://calendly.com/elianaepervieux/consultoria-1-1-eliana-pervieux" target="_blank" class="btn-comprar">Quiero mi consultoría →</a>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-</section>
-
-<!-- CÓMO FUNCIONA -->
-<section id="como">
-  <div class="section-inner" style="text-align:center;">
-    <span class="section-tag">El proceso</span>
-    <h2 class="section-title">¿Cómo empezamos?</h2>
-    <p class="section-subtitle" style="margin: 0 auto;">Simple, claro y sin vueltas.</p>
-    <div class="pasos">
-      <div class="paso">
-        <div class="paso-num">1</div>
-        <h3>Elegís tu recurso</h3>
-        <p>La guía si querés empezar sola, o la consultoría si querés acompañamiento personalizado.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-num">2</div>
-        <h3>Realizás el pago</h3>
-        <p>Pago seguro a través de Mercado Pago o el método que prefieras.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-num">3</div>
-        <h3>Recibís tu recurso</h3>
-        <p>La guía llega a tu email al instante. La consultoría se agenda en el horario que elijas.</p>
-      </div>
-      <div class="paso">
-        <div class="paso-num">4</div>
-        <h3>Tomás el control</h3>
-        <p>Empezás a aplicar el plan y tu situación financiera empieza a cambiar.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIOS -->
 <section id="testimonios">
-  <div class="section-inner" style="text-align:center;">
-    <span class="section-tag">Lo que dicen</span>
-    <h2 class="section-title">Mujeres que tomaron el control</h2>
-    <p class="section-subtitle" style="margin: 0 auto;">Sus palabras valen más que las mías.</p>
-    <div class="testimonios-grid" style="text-align:left;">
-      <div class="testimonio">
-        <div class="estrellas">★★★★★</div>
-        <p class="testimonio-texto">"Después de la consultoría con Eliana entendí por qué nunca me alcanzaba el sueldo. En 2 meses ya pagué una tarjeta completa. ¡Impresionante!"</p>
-        <div class="testimonio-autor">
-          <div class="testimonio-avatar">M</div>
-          <div>
-            <div class="testimonio-nombre">María L.</div>
-            <div class="testimonio-ubicacion">Buenos Aires, Argentina</div>
-          </div>
-        </div>
+  <div class="test-inner">
+    <div class="test-header fade-up">
+      <div>
+        <div class="test-tag">Lo que dicen</div>
+        <h2 class="test-title">Mujeres que<br><em>tomaron el control</em></h2>
       </div>
-      <div class="testimonio">
-        <div class="estrellas">★★★★★</div>
-        <p class="testimonio-texto">"La guía es clara, práctica y sin vueltas. La completé en un fin de semana y ya tengo mi inventario de deudas y mi plan armado."</p>
-        <div class="testimonio-autor">
-          <div class="testimonio-avatar">C</div>
-          <div>
-            <div class="testimonio-nombre">Carolina R.</div>
-            <div class="testimonio-ubicacion">Córdoba, Argentina</div>
-          </div>
-        </div>
+      <p class="test-nota">* Reemplazá con testimonios reales cuando los tengas</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card fade-up">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Después de la consultoría con Eliana entendí por qué nunca me alcanzaba el sueldo. En 2 meses ya pagué una tarjeta completa."</p>
+        <div class="test-author"><div class="test-avatar">M</div><div><div class="test-name">María L.</div><div class="test-loc">Buenos Aires, Argentina</div></div></div>
       </div>
-      <div class="testimonio">
-        <div class="estrellas">★★★★★</div>
-        <p class="testimonio-texto">"Nunca pensé que una contadora me iba a hablar tan humanamente. Eliana entiende la realidad de las mujeres y explica todo sin hacerte sentir mal."</p>
-        <div class="testimonio-autor">
-          <div class="testimonio-avatar">V</div>
-          <div>
-            <div class="testimonio-nombre">Valentina M.</div>
-            <div class="testimonio-ubicacion">Mendoza, Argentina</div>
-          </div>
-        </div>
+      <div class="test-card fade-up">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"La guía es clara, práctica y sin vueltas. La completé en un fin de semana y ya tengo mi plan armado."</p>
+        <div class="test-author"><div class="test-avatar">C</div><div><div class="test-name">Carolina R.</div><div class="test-loc">Córdoba, Argentina</div></div></div>
+      </div>
+      <div class="test-card fade-up">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Nunca pensé que una contadora me iba a hablar tan humanamente. Explica todo sin hacerte sentir mal."</p>
+        <div class="test-author"><div class="test-avatar">V</div><div><div class="test-name">Valentina M.</div><div class="test-loc">Mendoza, Argentina</div></div></div>
       </div>
     </div>
-    <p style="margin-top:30px; color:#999; font-size:0.85rem; font-style:italic;">* Los testimonios son representativos. Reemplazalos con los reales cuando los tengas.</p>
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
-  <div class="section-inner" style="text-align:center;">
-    <span class="section-tag">Preguntas frecuentes</span>
-    <h2 class="section-title">¿Tenés dudas?</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Para quién es la guía? <span class="faq-icon"></span></button>
-        <div class="faq-respuesta">Para cualquier mujer que tenga deudas y no sepa por dónde empezar. No importa si tenés una tarjeta atrasada o varios préstamos — el método funciona para todos los casos.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Cómo recibo la guía después de comprar? <span class="faq-icon"></span></button>
-        <div class="faq-respuesta">Inmediatamente después del pago, recibirás un email con el link de descarga del PDF. Si no llega en 5 minutos, revisá la carpeta de spam o escribime por Instagram.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿La consultoría es presencial o virtual? <span class="faq-icon"></span></button>
-        <div class="faq-respuesta">Es 100% virtual, por Zoom o Google Meet. Podés hacerla desde cualquier lugar del mundo donde tengas conexión a internet.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Funciona si estoy en otro país, no en Argentina? <span class="faq-icon"></span></button>
-        <div class="faq-respuesta">Sí. La guía tiene una sección general para toda Latinoamérica y una sección específica para Argentina. La consultoría 1:1 se adapta a tu país y situación.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Qué pasa si tengo preguntas después de comprar la guía? <span class="faq-icon"></span></button>
-        <div class="faq-respuesta">Podés escribirme por DM en Instagram (@elianapervieux). Respondo todas las consultas. Si necesitás acompañamiento más profundo, la consultoría 1:1 es ideal.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Aceptan Mercado Pago? <span class="faq-icon"></span></button>
-        <div class="faq-respuesta">Sí, aceptamos Mercado Pago para cobros en Argentina y otros países de Latinoamérica. También aceptamos transferencia bancaria. Ante cualquier duda escribime.</div>
-      </div>
-    </div>
-  </div>
+  <div class="faq-tag">Preguntas frecuentes</div>
+  <h2 class="faq-title">¿Tenés <em>dudas?</em></h2>
+  <div class="faq-item"><button class="faq-q">¿La guía es realmente gratuita? <span class="faq-icon"></span></button><div class="faq-a">Sí, 100% gratuita. Solo necesitás dejar tu email para recibirla. Sin letra chica, sin suscripciones automáticas pagas.</div></div>
+  <div class="faq-item"><button class="faq-q">¿Para quién es la guía? <span class="faq-icon"></span></button><div class="faq-a">Para cualquier persona con deudas bancarias en Argentina. No importa si tenés una tarjeta atrasada, varios préstamos o ya te pasaron a un estudio jurídico.</div></div>
+  <div class="faq-item"><button class="faq-q">¿Cómo recibo la guía? <span class="faq-icon"></span></button><div class="faq-a">Inmediatamente después de dejar tu email, recibirás el PDF en tu correo. Si no llega en 5 minutos, revisá la carpeta de spam.</div></div>
+  <div class="faq-item"><button class="faq-q">¿La consultoría es presencial o virtual? <span class="faq-icon"></span></button><div class="faq-a">Es 100% virtual, por Zoom o Google Meet. Podés hacerla desde cualquier lugar donde tengas conexión.</div></div>
+  <div class="faq-item"><button class="faq-q">¿Tengo preguntas después de leer la guía? <span class="faq-icon"></span></button><div class="faq-a">Podés escribirme por DM en Instagram (@elianapervieux). Si necesitás acompañamiento más profundo, la consultoría 1:1 es el paso siguiente.</div></div>
+  <div class="faq-item"><button class="faq-q">¿La guía aplica a toda Latinoamérica? <span class="faq-icon"></span></button><div class="faq-a">La guía está diseñada para el marco legal argentino (Ley 24.240, Ley 25.065, BCRA). Si estás en otro país los conceptos generales sirven, pero la legislación específica es argentina.</div></div>
 </section>
 
-<!-- CTA FINAL -->
 <section id="cta">
-  <div class="section-inner">
-    <h2 class="section-title">¿Lista para tomar el control?</h2>
-    <p class="section-subtitle">El mejor momento para empezar fue ayer. El segundo mejor momento es ahora.</p>
+  <div class="cta-inner fade-up">
+    <p class="cta-pre">El momento es ahora</p>
+    <h2 class="cta-title">Podés cambiar<br><em>lo que te está pasando</em></h2>
+    <p class="cta-desc">Solo necesitás foco e información para superarlo. Empezá hoy con la guía gratuita.</p>
     <div class="cta-buttons">
-      <a href="#productos" class="btn-blanco">Ver mis recursos →</a>
-      <a href="https://www.instagram.com/elianapervieux" target="_blank" class="btn-outline-blanco">Seguime en Instagram</a>
+      <a href="https://eliana-pervieux.tiendup.com/p/deudas-bancarias-la-guia" target="_blank" class="btn-cta-white">Descargar guía gratis →</a>
+      <a href="https://calendly.com/elianaepervieux/consultoria-1-1-eliana-pervieux" target="_blank" class="btn-cta-outline">Agendar consultoría</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Eliana Pervieux</div>
-  <p>Contadora Pública · Experta en Finanzas · Educadora Financiera</p>
-  <p style="margin-top:8px;">
+  <div class="footer-logo">Eliana <em>Pervieux</em></div>
+  <div class="footer-links">
     <a href="https://www.instagram.com/elianapervieux" target="_blank">@elianapervieux</a>
-    &nbsp;·&nbsp;
-    <a href="https://cafecito.app/elianapervieux" target="_blank">cafecito.app/elianapervieux</a>
-    &nbsp;·&nbsp;
+    <a href="https://cafecito.app/elianapervieux" target="_blank">Cafecito</a>
     <a href="https://www.instagram.com/f.i.l.s.e" target="_blank">@f.i.l.s.e</a>
-  </p>
-  <p style="margin-top:16px; font-size:0.78rem; opacity:.5;">© 2026 Eliana Pervieux. Todos los derechos reservados.</p>
+  </div>
+  <div class="footer-copy">© 2026 Eliana Pervieux</div>
 </footer>
 
 <script>
-  // FAQ toggle
-  document.querySelectorAll('.faq-pregunta').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
-    });
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=(mx-5)+'px';cursor.style.top=(my-5)+'px';
+});
+function animRing(){rx+=(mx-rx-18)*.12;ry+=(my-ry-18)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='0'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='1'});
+});
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
   });
+});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
